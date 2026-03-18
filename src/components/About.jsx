@@ -74,7 +74,7 @@ const About = ({ about, hero }) => {
 <div className="about__stats">
   <div className="about__stat-card">
     <span className="about__stat-number">{about.yearsExperience || '3+'}</span>
-    <span className="about__stat-label">Years of Experience</span>
+    <span className="about__stat-label">of Experience</span>
   </div>
   <div className="about__stat-card">
     <span className="about__stat-number">{about.projectsCompleted || '20+'}</span>
