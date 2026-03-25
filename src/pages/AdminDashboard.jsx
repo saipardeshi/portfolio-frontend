@@ -201,7 +201,7 @@ const AboutEditor = ({ data, onSave }) => {
 
       <div className="admin__form-row">
         <div className="admin__field">
-          <label>Years of Experience</label>
+          <label>of Experience</label>
           <input value={form.yearsExperience || ''} onChange={e => set('yearsExperience', e.target.value)} placeholder="3+" />
         </div>
         <div className="admin__field">
