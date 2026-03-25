@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Portfolio from './pages/Portfolio';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import TechWaveBackground from "./components/TechWaveBackground";
+import Loader from "./components/Loader";
 
 const AdminRoute = ({ children }) => {
   const { isAdmin, loading } = useAuth();
@@ -17,9 +18,14 @@ const AdminRoute = ({ children }) => {
 };
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <AuthProvider>
       <Router>
+
+        {/* Loader */}
+        {loading && <Loader onComplete={() => setLoading(false)} />}
 
         {/* 3D Background */}
         <TechWaveBackground />
