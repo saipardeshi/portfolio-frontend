@@ -1,6 +1,5 @@
-import React, { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-
+import React, { useRef, Suspense } from "react";
 function Wave() {
   const meshRef = useRef();
 
@@ -49,10 +48,12 @@ export default function TechWaveBackground() {
         zIndex: -1
       }}
     >
-      <Canvas camera={{ position: [0, 6, 10] }}>
-        <ambientLight intensity={1.5} />
-        <Wave />
-      </Canvas>
+    <Canvas camera={{ position: [0, 6, 10] }}>
+     <Suspense fallback={null}>
+     <ambientLight intensity={1.5} />
+     <Wave />
+     </Suspense>
+    </Canvas>
     </div>
   );
 }

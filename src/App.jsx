@@ -28,7 +28,7 @@ function App() {
         {loading && <Loader onComplete={() => setLoading(false)} />}
 
         {/* 3D Background */}
-        <TechWaveBackground />
+        {!loading && <TechWaveBackground />}
 
         <Routes>
           <Route path="/" element={<Portfolio />} />
