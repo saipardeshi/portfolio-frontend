@@ -19,47 +19,22 @@ import '../styles/global.css';
 import '../styles/Navbar.css';
 import '../styles/Portfolio.css';
 
-const Portfolio = () => {
+const Portfolio = ({ onReady }) => {
   const [portfolio, setPortfolio] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  // Fetch portfolio data from Spring Boot backend on mount
+  // Fetch portfolio data from backend on mount
   useEffect(() => {
     getPortfolio()
       .then(res => setPortfolio(res.data))
-      .catch(() => setError('Failed to load portfolio data.'))
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="loading-screen">
-        <div style={{ textAlign: 'center' }}>
-          <div style={{
-            width: '48px', height: '48px',
-            border: '3px solid var(--border-color)',
-            borderTopColor: 'var(--purple-glow)',
-            borderRadius: '50%',
-            animation: 'spin 0.8s linear infinite',
-            margin: '0 auto 16px'
-          }}></div>
-          Loading...
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="loading-screen" style={{ color: '#fc8181', flexDirection: 'column', gap: '12px' }}>
-        <span>⚠️ {error}</span>
-        <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-          Make sure your Spring Boot backend is running on port 8080
-        </span>
-      </div>
-    );
-  }
+      .catch(() => {
+        // Backend unavailable — render with empty data gracefully
+        setPortfolio({});
+      })
+      .finally(() => {
+        // Signal loader to complete once data is ready (or failed)
+        onReady?.();
+      });
+  }, [onReady]);
 
   return (
     <div>

@@ -19,19 +19,30 @@ const AdminRoute = ({ children }) => {
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [dataReady, setDataReady] = useState(false);
+
+  // Loader completes only when BOTH the animation AND data fetch are done
+  const handleLoaderComplete = () => {
+    if (dataReady) setLoading(false);
+  };
+
+  const handleDataReady = () => {
+    setDataReady(true);
+    if (!loading) setLoading(false);
+  };
 
   return (
     <AuthProvider>
       <Router>
 
-        {/* Loader */}
-        {loading && <Loader onComplete={() => setLoading(false)} />}
+        {/* Loader — stays until data is ready */}
+        {loading && <Loader onComplete={handleLoaderComplete} />}
 
         {/* 3D Background */}
         {!loading && <TechWaveBackground />}
 
         <Routes>
-          <Route path="/" element={<Portfolio />} />
+          <Route path="/" element={<Portfolio onReady={handleDataReady} />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           
           <Route
