@@ -21,20 +21,98 @@ import '../styles/Portfolio.css';
 
 const Portfolio = ({ onReady }) => {
   const [portfolio, setPortfolio] = useState(null);
+  const [loading, setLoading] = useState(true);   // ⏳ track loading state
+  const [error, setError] = useState(false);       // ❌ track error state
 
-  // Fetch portfolio data from backend on mount
-  useEffect(() => {
+  // Fetch portfolio data from backend — supports retry on button click
+  const fetchData = () => {
+    setLoading(true);
+    setError(false);
+
     getPortfolio()
       .then(res => setPortfolio(res.data))
       .catch(() => {
-        // Backend unavailable — render with empty data gracefully
+        // Backend unavailable after all retries — show error UI
+        setError(true);
         setPortfolio({});
       })
       .finally(() => {
+        setLoading(false);
         // Signal loader to complete once data is ready (or failed)
         onReady?.();
       });
-  }, [onReady]);
+  };
+
+  // Fetch portfolio data from backend on mount
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // ⏳ Show spinner while backend is waking up / loading
+  if (loading) {
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        color: '#a855f7',
+        gap: '16px',
+        background: '#0a0a0a'
+      }}>
+        {/* Spinning loader ring */}
+        <div style={{
+          width: '48px',
+          height: '48px',
+          border: '4px solid #a855f7',
+          borderTop: '4px solid transparent',
+          borderRadius: '50%',
+          animation: 'spin 1s linear infinite'
+        }} />
+        <p style={{ fontSize: '1rem', opacity: 0.7 }}>
+          Waking up server, please wait...
+        </p>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </div>
+    );
+  }
+
+  // ❌ Show error message + retry button if all retries failed
+  if (error) {
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        color: '#a855f7',
+        gap: '16px',
+        background: '#0a0a0a'
+      }}>
+        <p style={{ fontSize: '1.2rem' }}>⚠️ Failed to load portfolio</p>
+        <p style={{ fontSize: '0.9rem', opacity: 0.6 }}>
+          The server may be starting up. Please try again.
+        </p>
+        {/* Retry button — re-triggers fetchData with fresh retries */}
+        <button
+          onClick={fetchData}
+          style={{
+            padding: '10px 24px',
+            background: '#a855f7',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontSize: '1rem'
+          }}
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div>

@@ -35,9 +35,19 @@ export const loginAdmin = (credentials) =>
 export const verifyToken = () =>
   axiosInstance.get('/auth/verify');                 // → /api/auth/verify ✅
 
-// ✅ Public API (no auth needed)
-export const getPortfolio = () =>
-  axios.get(`${API_BASE}/api/portfolio`);            // → /api/portfolio ✅
+// ✅ Public API with retry logic for Render cold start (free tier sleeps after inactivity)
+export const getPortfolio = async (retries = 3, delay = 4000) => {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await axios.get(`${API_BASE}/api/portfolio`); // → /api/portfolio ✅
+      return response;
+    } catch (err) {
+      const isLast = i === retries - 1;
+      if (isLast) throw err; // all retries exhausted — throw to caller
+      await new Promise(r => setTimeout(r, delay)); // wait before retrying
+    }
+  }
+};
 
 // ✅ Admin Update APIs
 export const updateHero = (data) =>
