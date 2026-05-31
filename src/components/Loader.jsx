@@ -21,7 +21,7 @@ export default function Loader({ onComplete }) {
         }
         current = target;
         if (target === 100) {
-          const t3 = setTimeout(() => onComplete?.(), 3500);
+          const t3 = setTimeout(() => onComplete?.(), 600);
           timers.push(t3);
         }
       }, delays[idx]);
