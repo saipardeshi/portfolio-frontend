@@ -28,7 +28,7 @@ const Hero = ({ hero }) => {
 
           {/* Left: Text content */}
           <div className="hero__text">
-            <p className="hero__greeting">👋 Hello, I'm</p>
+            <p className="hero__greeting"> Hello, I'm</p>
 
             <h1 className="hero__name">{hero.name || 'Your Name'}</h1>
 

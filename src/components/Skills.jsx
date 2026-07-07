@@ -4,15 +4,15 @@ const Skills = ({ skills }) => {
   if (!skills || skills.length === 0) return null;
 
   const categoryIcons = {
-    'Frontend': '🎨',
-    'Backend': '⚙️',
-    'DevOps': '🚀',
-    'DevOps & Tools': '🛠️',
-    'Database': '🗄️',
-    'Mobile': '📱',
-    'Cloud': '☁️',
-    'Testing': '🧪',
-    'Other': '💡',
+    'Frontend': '',
+    'Backend': '',
+    'DevOps': '',
+    'DevOps & Tools': '',
+    'Database': '',
+    'Mobile': '',
+    'Cloud': '',
+    'Testing': '',
+    'Other': '',
   };
 
   return (
