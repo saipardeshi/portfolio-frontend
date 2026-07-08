@@ -19,14 +19,14 @@ import '../styles/Admin.css';
 // SIDEBAR NAV ITEMS
 // =============================================
 const NAV_SECTIONS = [
-  { id: 'hero',         label: 'Hero / Home',      icon: '🏠' },
-  { id: 'about',        label: 'About Me',          icon: '👤' },
-  { id: 'skills',       label: 'Technical Skills',  icon: '⚡' },
-  { id: 'experiences',  label: 'Experience',        icon: '💼' },
-  { id: 'projects',     label: 'Projects',          icon: '🚀' },
-  { id: 'educations',   label: 'Education',         icon: '🎓' },
-  { id: 'certificates', label: 'Certificates',      icon: '🏆' },
-  { id: 'contact',      label: 'Contact Info',      icon: '📬' },
+  { id: 'hero',         label: 'Hero / Home',      icon: '' },
+  { id: 'about',        label: 'About Me',          icon: '' },
+  { id: 'skills',       label: 'Technical Skills',  icon: '' },
+  { id: 'experiences',  label: 'Experience',        icon: '' },
+  { id: 'projects',     label: 'Projects',          icon: '' },
+  { id: 'educations',   label: 'Education',         icon: '' },
+  { id: 'certificates', label: 'Certificates',      icon: '' },
+  { id: 'contact',      label: 'Contact Info',      icon: '' },
 ];
 
 // =============================================
@@ -151,7 +151,7 @@ const HeroEditor = ({ data, onSave }) => {
       </div>
 
       <button className="admin__save-btn" onClick={handleSave} disabled={saving}>
-        {saving ? 'Saving...' : '💾 Save Changes'}
+        {saving ? 'Saving...' : ' Save Changes'}
       </button>
     </div>
   );
@@ -222,7 +222,7 @@ const AboutEditor = ({ data, onSave }) => {
       </div>
 
       <button className="admin__save-btn" onClick={handleSave} disabled={saving}>
-        {saving ? 'Saving...' : '💾 Save Changes'}
+        {saving ? 'Saving...' : ' Save Changes'}
       </button>
     </div>
   );
@@ -288,7 +288,7 @@ const SkillsEditor = ({ data, onSave }) => {
       <button className="admin__add-btn" onClick={addCategory}>+ Add Category</button>
 
       <button className="admin__save-btn" onClick={handleSave} disabled={saving}>
-        {saving ? 'Saving...' : '💾 Save Changes'}
+        {saving ? 'Saving...' : ' Save Changes'}
       </button>
     </div>
   );
@@ -360,7 +360,7 @@ const ExperienceEditor = ({ data, onSave }) => {
       <button className="admin__add-btn" onClick={addItem}>+ Add Experience</button>
 
       <button className="admin__save-btn" onClick={handleSave} disabled={saving}>
-        {saving ? 'Saving...' : '💾 Save Changes'}
+        {saving ? 'Saving...' : ' Save Changes'}
       </button>
     </div>
   );
@@ -438,7 +438,7 @@ const ProjectsEditor = ({ data, onSave }) => {
       <button className="admin__add-btn" onClick={addItem}>+ Add Project</button>
 
       <button className="admin__save-btn" onClick={handleSave} disabled={saving}>
-        {saving ? 'Saving...' : '💾 Save Changes'}
+        {saving ? 'Saving...' : ' Save Changes'}
       </button>
     </div>
   );
@@ -511,7 +511,7 @@ const EducationEditor = ({ data, onSave }) => {
       <button className="admin__add-btn" onClick={addItem}>+ Add Education</button>
 
       <button className="admin__save-btn" onClick={handleSave} disabled={saving}>
-        {saving ? 'Saving...' : '💾 Save Changes'}
+        {saving ? 'Saving...' : ' Save Changes'}
       </button>
     </div>
   );
@@ -579,7 +579,7 @@ const CertificatesEditor = ({ data, onSave }) => {
       <button className="admin__add-btn" onClick={addItem}>+ Add Certificate</button>
 
       <button className="admin__save-btn" onClick={handleSave} disabled={saving}>
-        {saving ? 'Saving...' : '💾 Save Changes'}
+        {saving ? 'Saving...' : ' Save Changes'}
       </button>
     </div>
   );
@@ -631,7 +631,7 @@ const ContactEditor = ({ data, onSave }) => {
       </div>
 
       <button className="admin__save-btn" onClick={handleSave} disabled={saving}>
-        {saving ? 'Saving...' : '💾 Save Changes'}
+        {saving ? 'Saving...' : ' Save Changes'}
       </button>
     </div>
   );
@@ -713,7 +713,7 @@ const AdminDashboard = () => {
       {/* ---- SIDEBAR ---- */}
       <aside className="admin__sidebar">
         <div className="admin__sidebar-logo">
-          <h2>⚙️ Admin Panel</h2>
+          <h2> Admin Panel</h2>
           <p>Portfolio Manager</p>
         </div>
 
@@ -731,8 +731,8 @@ const AdminDashboard = () => {
         </nav>
 
         <div className="admin__sidebar-footer">
-          <Link to="/" className="admin__view-site">🌐 View Site</Link>
-          <button className="admin__logout" onClick={handleLogout}>🚪 Logout</button>
+          <Link to="/" className="admin__view-site"> View Site</Link>
+          <button className="admin__logout" onClick={handleLogout}> Logout</button>
         </div>
       </aside>
 

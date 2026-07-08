@@ -25,7 +25,7 @@ const Experience = ({ experiences }) => {
               <p className="experience__role">{exp.role}</p>
 
               {/* Duration */}
-              <p className="experience__duration">📅 {exp.duration}</p>
+              <p className="experience__duration">{exp.duration}</p>
 
               {/* Description */}
               {exp.description && (

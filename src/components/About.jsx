@@ -23,7 +23,7 @@ const About = ({ about, hero }) => {
               {/* Location */}
               {about.location && (
                 <li className="about__info-item">
-                  <span className="about__info-icon">📍</span>
+                  <span className="about__info-icon">-</span>
                   {about.location}
                 </li>
               )}
@@ -31,7 +31,7 @@ const About = ({ about, hero }) => {
               {/* Email */}
               {hero?.email && (
                 <li className="about__info-item">
-                  <span className="about__info-icon">✉️</span>
+                  <span className="about__info-icon">-</span>
                   <a href={`mailto:${hero.email}`} style={{ color: 'var(--purple-light)', textDecoration: 'none' }}>
                     {hero.email}
                   </a>
@@ -41,7 +41,7 @@ const About = ({ about, hero }) => {
               {/* LinkedIn */}
               {hero?.linkedinUrl && (
                 <li className="about__info-item">
-                  <span className="about__info-icon">💼</span>
+                  <span className="about__info-icon">-</span>
                   <a href={hero.linkedinUrl} target="_blank" rel="noopener noreferrer"
                     style={{ color: 'var(--purple-light)', textDecoration: 'none' }}>
                     LinkedIn Profile
@@ -52,7 +52,7 @@ const About = ({ about, hero }) => {
               {/* GitHub */}
               {hero?.githubUrl && (
                 <li className="about__info-item">
-                  <span className="about__info-icon">🐙</span>
+                  <span className="about__info-icon">-</span>
                   <a href={hero.githubUrl} target="_blank" rel="noopener noreferrer"
                     style={{ color: 'var(--purple-light)', textDecoration: 'none' }}>
                     GitHub Profile
@@ -65,7 +65,7 @@ const About = ({ about, hero }) => {
             {about.resumeUrl && about.resumeUrl !== '#' && (
               <a href={about.resumeUrl} target="_blank" rel="noopener noreferrer"
                 className="btn-primary" style={{ marginTop: '28px', display: 'inline-flex' }}>
-                📄 Download Resume
+                 Download Resume
               </a>
             )}
           </div>

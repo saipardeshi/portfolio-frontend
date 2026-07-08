@@ -100,7 +100,7 @@ const Contact = ({ contact, hero }) => {
               {/* Location (non-clickable) */}
               {location && (
                 <div className="contact__link-item" style={{ cursor: 'default' }}>
-                  <div className="contact__link-icon">📍</div>
+                  <div className="contact__link-icon"></div>
                   <div>
                     <div className="contact__link-label">Location</div>
                     <div className="contact__link-value">{location}</div>
@@ -148,7 +148,7 @@ const Contact = ({ contact, hero }) => {
             </div>
 
             <button type="submit" className="btn-primary" style={{ alignSelf: 'flex-start' }}>
-              {sent ? '✅ Message Sent!' : '🚀 Send Message'}
+              {sent ? '✅ Message Sent!' : ' Send Message'}
             </button>
           </form>
         </div>

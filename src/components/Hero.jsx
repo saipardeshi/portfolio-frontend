@@ -51,7 +51,7 @@ const Hero = ({ hero }) => {
                     ?.scrollIntoView({ behavior: 'smooth' })
                 }
               >
-                📬 Contact Me
+                Contact Me
               </button>
 
               <button
@@ -62,7 +62,7 @@ const Hero = ({ hero }) => {
                     ?.scrollIntoView({ behavior: 'smooth' })
                 }
               >
-                🚀 View Projects
+                 View Projects
               </button>
 
             </div>
