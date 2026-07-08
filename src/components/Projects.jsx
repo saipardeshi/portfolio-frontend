@@ -8,7 +8,7 @@ const Projects = ({ projects }) => {
   if (!projects || projects.length === 0) return null;
 
   // Emoji icons for project cards when no image
-  const projectEmojis = ['🚀', '⚡', '🛠️', '💻', '🎯', '🌐', '🔥', '🎨'];
+  const projectEmojis = ['', '', '', '', '', '', '', ''];
 
   return (
     <section id="projects" className="section" style={{ background: 'rgba(124, 58, 237, 0.03)' }}>

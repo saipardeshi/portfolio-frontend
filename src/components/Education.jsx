@@ -17,7 +17,7 @@ const Education = ({ educations }) => {
           {educations.map((edu, index) => (
             <div key={index} className="card">
               {/* Institution */}
-              <p className="education__institution">🎓 {edu.institution}</p>
+              <p className="education__institution">{edu.institution}</p>
 
               {/* Degree */}
               <h3 className="education__degree">{edu.degree}</h3>
@@ -31,8 +31,8 @@ const Education = ({ educations }) => {
 
               {/* Duration and Grade */}
               <div className="education__meta">
-                {edu.duration && <span>📅 {edu.duration}</span>}
-                {edu.grade && <span>⭐ {edu.grade}</span>}
+                {edu.duration && <span> • {edu.duration}</span>}
+                {edu.grade && <span>• {edu.grade}</span>}
               </div>
             </div>
           ))}

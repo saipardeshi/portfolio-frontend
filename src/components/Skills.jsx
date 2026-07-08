@@ -76,7 +76,7 @@ const Skills = ({ skills }) => {
           {skills.map((category, index) => (
             <div key={index} className="card">
               <h3 className="skills__category-title">
-                {categoryIcons[category.category] || '🔧'} {category.category}
+                {categoryIcons[category.category] || ''} {category.category}
               </h3>
               <div className="skills__tags">
                 {category.skills && category.skills.map((skill, i) => (

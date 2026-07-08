@@ -16,25 +16,13 @@ const Certificates = ({ certificates }) => {
         <div className="certs__grid">
           {certificates.map((cert, index) => (
             <div key={index} className="card">
-              {/* Certificate badge icon */}
-              <div style={{
-                width: '48px', height: '48px',
-                background: 'linear-gradient(135deg, var(--purple-bright), var(--accent-pink))',
-                borderRadius: '12px',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '1.4rem', marginBottom: '16px'
-              }}>
-                🏆
-              </div>
 
-              {/* Title */}
-              <h3 className="cert-card__title">{cert.title}</h3>
 
               {/* Issuer */}
               <p className="cert-card__issuer">{cert.issuer}</p>
 
               {/* Date */}
-              {cert.date && <p className="cert-card__date">📅 {cert.date}</p>}
+              {cert.date && <p className="cert-card__date"> {cert.date}</p>}
 
               {/* Credential link */}
               {cert.credentialUrl && cert.credentialUrl !== '#' && (
