@@ -2,6 +2,7 @@
 // CERTIFICATES SECTION COMPONENT
 // =============================================
 import React from 'react';
+import { BsPatchCheckFill, BsBuilding, BsCalendarEvent, BsBoxArrowUpRight } from 'react-icons/bs';
 
 const Certificates = ({ certificates }) => {
   if (!certificates || certificates.length === 0) return null;
@@ -15,14 +16,26 @@ const Certificates = ({ certificates }) => {
 
         <div className="certs__grid">
           {certificates.map((cert, index) => (
-            <div key={index} className="card">
+            <div key={index} className="card" style={{ position: 'relative', overflow: 'hidden' }}>
+              {/* Verified Certificate Icon Overlay */}
+              <div style={{ position: 'absolute', right: '20px', top: '20px', fontSize: '1.6rem', color: 'var(--purple-glow)', opacity: 0.18 }}>
+                <BsPatchCheckFill />
+              </div>
 
+              {/* Title */}
+              <h3 className="cert-card__title">{cert.title}</h3>
 
               {/* Issuer */}
-              <p className="cert-card__issuer">{cert.issuer}</p>
+              <p className="cert-card__issuer" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <BsBuilding style={{ fontSize: '0.85rem' }} /> {cert.issuer}
+              </p>
 
               {/* Date */}
-              {cert.date && <p className="cert-card__date"> {cert.date}</p>}
+              {cert.date && (
+                <p className="cert-card__date" style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '6px' }}>
+                  <BsCalendarEvent style={{ fontSize: '0.85rem' }} /> {cert.date}
+                </p>
+              )}
 
               {/* Credential link */}
               {cert.credentialUrl && cert.credentialUrl !== '#' && (
@@ -31,12 +44,9 @@ const Certificates = ({ certificates }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cert-card__link"
+                  style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '12px' }}
                 >
-                  {/* External link icon */}
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                    <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-                  </svg>
+                  <BsBoxArrowUpRight size={13} />
                   View Credential
                 </a>
               )}

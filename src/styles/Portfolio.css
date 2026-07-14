@@ -280,12 +280,13 @@
 }
 
 .skills__category-title::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: var(--purple-glow);
-  border-radius: 50%;
-  box-shadow: var(--glow-purple);
+  display: none;
+}
+
+.skills__category-title svg {
+  color: var(--purple-glow);
+  font-size: 1.2rem;
+  flex-shrink: 0;
 }
 
 .skills__tags {
@@ -316,16 +317,33 @@
 }
 
 .experience__item::before {
-  content: '';
+  display: none;
+}
+
+.experience__icon-container {
   position: absolute;
-  left: -37px;
-  top: 8px;
-  width: 12px;
-  height: 12px;
-  background: var(--purple-glow);
+  left: -48px;
+  top: 4px;
+  width: 32px;
+  height: 32px;
+  background: var(--bg-card);
+  border: 2px solid var(--purple-glow);
   border-radius: 50%;
-  border: 3px solid var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--purple-light);
+  font-size: 0.9rem;
+  z-index: 2;
   box-shadow: var(--glow-purple);
+  transition: var(--transition);
+}
+
+.experience__item:hover .experience__icon-container {
+  background: var(--purple-bright);
+  color: white;
+  border-color: var(--purple-light);
+  transform: scale(1.1);
 }
 
 .experience__company {

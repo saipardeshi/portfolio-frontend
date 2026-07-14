@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Portfolio from './pages/Portfolio';
@@ -19,17 +19,22 @@ const AdminRoute = ({ children }) => {
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [dataReady, setDataReady] = useState(false);
+  const animDone = useRef(false);
+  const dataDone = useRef(false);
 
-  // Loader completes only when BOTH the animation AND data fetch are done
-  const handleLoaderComplete = () => {
-    if (dataReady) setLoading(false);
-  };
+  const checkDone = useCallback(() => {
+    if (animDone.current && dataDone.current) setLoading(false);
+  }, []);
 
-  const handleDataReady = () => {
-    setDataReady(true);
-    if (!loading) setLoading(false);
-  };
+  const handleLoaderComplete = useCallback(() => {
+    animDone.current = true;
+    checkDone();
+  }, [checkDone]);
+
+  const handleDataReady = useCallback(() => {
+    dataDone.current = true;
+    checkDone();
+  }, [checkDone]);
 
   return (
     <AuthProvider>

@@ -36,7 +36,7 @@ export const verifyToken = () =>
   axiosInstance.get('/auth/verify');                 // → /api/auth/verify ✅
 
 // ✅ Public API with retry logic for Render cold start (free tier sleeps after inactivity)
-export const getPortfolio = async (retries = 3, delay = 4000) => {
+export const getPortfolio = async (retries = 3, delay = 2000) => {
   for (let i = 0; i < retries; i++) {
     try {
       const response = await axios.get(`${API_BASE}/api/portfolio`); // → /api/portfolio ✅

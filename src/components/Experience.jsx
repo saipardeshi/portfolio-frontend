@@ -3,6 +3,7 @@
 // Timeline layout for work experiences
 // =============================================
 import React from 'react';
+import { BsBriefcaseFill, BsCalendar3 } from 'react-icons/bs';
 
 const Experience = ({ experiences }) => {
   if (!experiences || experiences.length === 0) return null;
@@ -18,6 +19,11 @@ const Experience = ({ experiences }) => {
         <div className="experience__timeline" style={{ maxWidth: '700px' }}>
           {experiences.map((exp, index) => (
             <div key={index} className="experience__item">
+              {/* Timeline Icon Node */}
+              <div className="experience__icon-container">
+                <BsBriefcaseFill />
+              </div>
+
               {/* Company name */}
               <h3 className="experience__company">{exp.company}</h3>
 
@@ -25,7 +31,9 @@ const Experience = ({ experiences }) => {
               <p className="experience__role">{exp.role}</p>
 
               {/* Duration */}
-              <p className="experience__duration">{exp.duration}</p>
+              <p className="experience__duration" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <BsCalendar3 style={{ color: 'var(--purple-glow)' }} /> {exp.duration}
+              </p>
 
               {/* Description */}
               {exp.description && (
