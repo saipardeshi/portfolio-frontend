@@ -5,6 +5,7 @@
 // =============================================
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { BsShieldLockFill } from 'react-icons/bs';
 import '../styles/Navbar.css';
 
 // Navigation items - clicking scrolls to that section
@@ -105,8 +106,8 @@ const Navbar = ({ name }) => {
             {item.label}
           </a>
         ))}
-        <Link to="/admin/login" style={{ color: 'var(--purple-light)' }}>
-          🔐 Admin Panel
+        <Link to="/admin/login" style={{ color: 'var(--purple-light)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+          <BsShieldLockFill /> Admin Panel
         </Link>
       </div>
     </>

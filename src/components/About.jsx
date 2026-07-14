@@ -3,6 +3,17 @@
 // Shows: bio, location, resume link, stats cards
 // =============================================
 import React from 'react';
+import {
+  BsGeoAltFill,
+  BsEnvelopeFill,
+  BsLinkedin,
+  BsGithub,
+  BsFileEarmarkPdfFill,
+  BsBriefcaseFill,
+  BsKanbanFill,
+  BsCpuFill,
+  BsPatchCheckFill
+} from 'react-icons/bs';
 
 const About = ({ about, hero }) => {
   if (!about) return null;
@@ -23,7 +34,7 @@ const About = ({ about, hero }) => {
               {/* Location */}
               {about.location && (
                 <li className="about__info-item">
-                  <span className="about__info-icon">-</span>
+                  <span className="about__info-icon"><BsGeoAltFill /></span>
                   {about.location}
                 </li>
               )}
@@ -31,7 +42,7 @@ const About = ({ about, hero }) => {
               {/* Email */}
               {hero?.email && (
                 <li className="about__info-item">
-                  <span className="about__info-icon">-</span>
+                  <span className="about__info-icon"><BsEnvelopeFill /></span>
                   <a href={`mailto:${hero.email}`} style={{ color: 'var(--purple-light)', textDecoration: 'none' }}>
                     {hero.email}
                   </a>
@@ -41,7 +52,7 @@ const About = ({ about, hero }) => {
               {/* LinkedIn */}
               {hero?.linkedinUrl && (
                 <li className="about__info-item">
-                  <span className="about__info-icon">-</span>
+                  <span className="about__info-icon"><BsLinkedin /></span>
                   <a href={hero.linkedinUrl} target="_blank" rel="noopener noreferrer"
                     style={{ color: 'var(--purple-light)', textDecoration: 'none' }}>
                     LinkedIn Profile
@@ -52,7 +63,7 @@ const About = ({ about, hero }) => {
               {/* GitHub */}
               {hero?.githubUrl && (
                 <li className="about__info-item">
-                  <span className="about__info-icon">-</span>
+                  <span className="about__info-icon"><BsGithub /></span>
                   <a href={hero.githubUrl} target="_blank" rel="noopener noreferrer"
                     style={{ color: 'var(--purple-light)', textDecoration: 'none' }}>
                     GitHub Profile
@@ -64,31 +75,43 @@ const About = ({ about, hero }) => {
             {/* Resume download button */}
             {about.resumeUrl && about.resumeUrl !== '#' && (
               <a href={about.resumeUrl} target="_blank" rel="noopener noreferrer"
-                className="btn-primary" style={{ marginTop: '28px', display: 'inline-flex' }}>
-                 Download Resume
+                className="btn-primary" style={{ marginTop: '28px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                <BsFileEarmarkPdfFill /> Download Resume
               </a>
             )}
           </div>
 
-  {/* CHANGED: values now come from about data instead of hardcoded */}
-<div className="about__stats">
-  <div className="about__stat-card">
-    <span className="about__stat-number">{about.yearsExperience || '3+'}</span>
-    <span className="about__stat-label">of Experience</span>
-  </div>
-  <div className="about__stat-card">
-    <span className="about__stat-number">{about.projectsCompleted || '20+'}</span>
-    <span className="about__stat-label">Projects Completed</span>
-  </div>
-  <div className="about__stat-card">
-    <span className="about__stat-number">{about.technologiesCount || '10+'}</span>
-    <span className="about__stat-label">Technologies</span>
-  </div>
-  <div className="about__stat-card">
-    <span className="about__stat-number">{about.certificationsCount || '5+'}</span>
-    <span className="about__stat-label">Certifications</span>
-  </div>
-</div>
+          {/* Stats Cards */}
+          <div className="about__stats">
+            <div className="about__stat-card">
+              <div style={{ fontSize: '1.8rem', color: 'var(--purple-light)', marginBottom: '8px', display: 'flex', justifyContent: 'center' }}>
+                
+              </div>
+              <span className="about__stat-number">{about.yearsExperience || '3+'}</span>
+              <span className="about__stat-label">of Experience</span>
+            </div>
+            <div className="about__stat-card">
+              <div style={{ fontSize: '1.8rem', color: 'var(--purple-light)', marginBottom: '8px', display: 'flex', justifyContent: 'center' }}>
+                
+              </div>
+              <span className="about__stat-number">{about.projectsCompleted || '20+'}</span>
+              <span className="about__stat-label">Projects Completed</span>
+            </div>
+            <div className="about__stat-card">
+              <div style={{ fontSize: '1.8rem', color: 'var(--purple-light)', marginBottom: '8px', display: 'flex', justifyContent: 'center' }}>
+                
+              </div>
+              <span className="about__stat-number">{about.technologiesCount || '10+'}</span>
+              <span className="about__stat-label">Technologies</span>
+            </div>
+            <div className="about__stat-card">
+              <div style={{ fontSize: '1.8rem', color: 'var(--purple-light)', marginBottom: '8px', display: 'flex', justifyContent: 'center' }}>
+                
+              </div>
+              <span className="about__stat-number">{about.certificationsCount || '5+'}</span>
+              <span className="about__stat-label">Certifications</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

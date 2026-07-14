@@ -1,18 +1,28 @@
 import React from 'react';
+import {
+  BsWindow,
+  BsServer,
+  BsGearFill,
+  BsDatabaseFill,
+  BsPhone,
+  BsCloudFill,
+  BsBugFill,
+  BsGridFill
+} from 'react-icons/bs';
 
 const Skills = ({ skills }) => {
   if (!skills || skills.length === 0) return null;
 
   const categoryIcons = {
-    'Frontend': '',
-    'Backend': '',
-    'DevOps': '',
-    'DevOps & Tools': '',
-    'Database': '',
-    'Mobile': '',
-    'Cloud': '',
-    'Testing': '',
-    'Other': '',
+    'Frontend': <BsWindow />,
+    'Backend': <BsServer />,
+    'DevOps': <BsGearFill />,
+    'DevOps & Tools': <BsGearFill />,
+    'Database': <BsDatabaseFill />,
+    'Mobile': <BsPhone />,
+    'Cloud': <BsCloudFill />,
+    'Testing': <BsBugFill />,
+    'Other': <BsGridFill />,
   };
 
   return (

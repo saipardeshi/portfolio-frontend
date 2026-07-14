@@ -5,7 +5,7 @@ export default function Loader({ onComplete }) {
 
   useEffect(() => {
     const targets = [20, 45, 70, 88, 100];
-    const delays  = [300, 700, 1200, 2000, 3000];
+    const delays  = [100, 250, 450, 700, 1000];
     const timers  = [];
     let current   = 0;
 
@@ -16,12 +16,12 @@ export default function Loader({ onComplete }) {
         for (let i = 0; i <= 20; i++) {
           const t2 = setTimeout(() => {
             setPct(Math.round(from + (diff * i) / 20));
-          }, i * diff * 7);
+          }, i * diff * 3);
           timers.push(t2);
         }
         current = target;
         if (target === 100) {
-          const t3 = setTimeout(() => onComplete?.(), 600);
+          const t3 = setTimeout(() => onComplete?.(), 300);
           timers.push(t3);
         }
       }, delays[idx]);

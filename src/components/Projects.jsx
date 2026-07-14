@@ -3,12 +3,40 @@
 // Grid of project cards with links
 // =============================================
 import React from 'react';
+import {
+  BsGithub,
+  BsBoxArrowUpRight,
+  BsWindow,
+  BsDatabaseFill,
+  BsPhoneFill,
+  BsGearFill,
+  BsTerminalFill,
+  BsCodeSlash
+} from 'react-icons/bs';
 
 const Projects = ({ projects }) => {
   if (!projects || projects.length === 0) return null;
 
-  // Emoji icons for project cards when no image
-  const projectEmojis = ['', '', '', '', '', '', '', ''];
+  // Choose a relative Bootstrap Icon based on project tech stack keywords
+  const getProjectIcon = (techStack = [], title = '') => {
+    const text = (techStack.join(' ') + ' ' + title).toLowerCase();
+    if (text.includes('react') || text.includes('vue') || text.includes('frontend') || text.includes('html') || text.includes('css') || text.includes('js') || text.includes('javascript')) {
+      return <BsWindow />;
+    }
+    if (text.includes('database') || text.includes('sql') || text.includes('mongodb') || text.includes('postgres') || text.includes('mysql')) {
+      return <BsDatabaseFill />;
+    }
+    if (text.includes('mobile') || text.includes('android') || text.includes('ios') || text.includes('flutter') || text.includes('react-native') || text.includes('kotlin')) {
+      return <BsPhoneFill />;
+    }
+    if (text.includes('aws') || text.includes('cloud') || text.includes('docker') || text.includes('devops') || text.includes('kubernetes') || text.includes('cicd')) {
+      return <BsGearFill />;
+    }
+    if (text.includes('backend') || text.includes('api') || text.includes('node') || text.includes('spring') || text.includes('express') || text.includes('java')) {
+      return <BsTerminalFill />;
+    }
+    return <BsCodeSlash />;
+  };
 
   return (
     <section id="projects" className="section" style={{ background: 'rgba(124, 58, 237, 0.03)' }}>
@@ -21,12 +49,14 @@ const Projects = ({ projects }) => {
           {projects.map((project, index) => (
             <div key={index} className="project-card">
 
-              {/* Project image or emoji placeholder */}
+              {/* Project image or fallback icon */}
               <div className="project-card__image">
                 {project.imageUrl ? (
                   <img src={project.imageUrl} alt={project.title} />
                 ) : (
-                  <span>{projectEmojis[index % projectEmojis.length]}</span>
+                  <div style={{ color: 'var(--purple-light)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    {getProjectIcon(project.techStack, project.title)}
+                  </div>
                 )}
               </div>
 
@@ -55,10 +85,7 @@ const Projects = ({ projects }) => {
                       rel="noopener noreferrer"
                       className="project-card__link"
                     >
-                      {/* GitHub icon */}
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                      </svg>
+                      <BsGithub size={16} />
                       GitHub
                     </a>
                   )}
@@ -70,11 +97,7 @@ const Projects = ({ projects }) => {
                       rel="noopener noreferrer"
                       className="project-card__link"
                     >
-                      {/* External link icon */}
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                        <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-                      </svg>
+                      <BsBoxArrowUpRight size={15} />
                       Live Demo
                     </a>
                   )}

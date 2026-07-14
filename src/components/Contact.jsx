@@ -4,6 +4,14 @@
 // Right: simple contact form (you can integrate emailjs)
 // =============================================
 import React, { useState } from 'react';
+import {
+  BsEnvelopeAtFill,
+  BsLinkedin,
+  BsGithub,
+  BsGeoAltFill,
+  BsSendFill,
+  BsCheckCircleFill
+} from 'react-icons/bs';
 
 const Contact = ({ contact, hero }) => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -54,10 +62,7 @@ const Contact = ({ contact, hero }) => {
               {email && (
                 <a href={`mailto:${email}`} className="contact__link-item">
                   <div className="contact__link-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                      <polyline points="22,6 12,13 2,6"/>
-                    </svg>
+                    <BsEnvelopeAtFill />
                   </div>
                   <div>
                     <div className="contact__link-label">Email Me</div>
@@ -70,10 +75,7 @@ const Contact = ({ contact, hero }) => {
               {linkedin && (
                 <a href={linkedin} target="_blank" rel="noopener noreferrer" className="contact__link-item">
                   <div className="contact__link-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                      <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
-                    </svg>
+                    <BsLinkedin />
                   </div>
                   <div>
                     <div className="contact__link-label">LinkedIn</div>
@@ -86,9 +88,7 @@ const Contact = ({ contact, hero }) => {
               {github && (
                 <a href={github} target="_blank" rel="noopener noreferrer" className="contact__link-item">
                   <div className="contact__link-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                    </svg>
+                    <BsGithub />
                   </div>
                   <div>
                     <div className="contact__link-label">GitHub</div>
@@ -100,7 +100,9 @@ const Contact = ({ contact, hero }) => {
               {/* Location (non-clickable) */}
               {location && (
                 <div className="contact__link-item" style={{ cursor: 'default' }}>
-                  <div className="contact__link-icon"></div>
+                  <div className="contact__link-icon">
+                    <BsGeoAltFill />
+                  </div>
                   <div>
                     <div className="contact__link-label">Location</div>
                     <div className="contact__link-value">{location}</div>
@@ -147,8 +149,16 @@ const Contact = ({ contact, hero }) => {
               />
             </div>
 
-            <button type="submit" className="btn-primary" style={{ alignSelf: 'flex-start' }}>
-              {sent ? '✅ Message Sent!' : ' Send Message'}
+            <button type="submit" className="btn-primary" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              {sent ? (
+                <>
+                  <BsCheckCircleFill /> Message Sent!
+                </>
+              ) : (
+                <>
+                  <BsSendFill /> Send Message
+                </>
+              )}
             </button>
           </form>
         </div>
