@@ -5,9 +5,39 @@
 import React from 'react';
 import { BsLinkedin, BsGithub, BsEnvelopeFill } from 'react-icons/bs';
 import AnimatedBackground from "../components/AnimatedBackground";
+import Sk from '../components/Sk';
 
-const Hero = ({ hero }) => {
+const Hero = ({ hero, loading }) => {
+  /* ---------- SKELETON ---------- */
+  if (loading) return (
+    <section id="home" className="hero section">
+      <AnimatedBackground />
+      <div className="container">
+        <div className="hero__grid">
+          <div className="hero__text">
+            <Sk className="sk-line sk-line--sm" style={{ width: '120px', marginBottom: '16px' }} />
+            <Sk className="sk-line--title skeleton-box" style={{ width: '70%', marginBottom: '18px' }} />
+            <Sk className="sk-line sk-line--lg" style={{ width: '55%', marginBottom: '12px' }} />
+            <Sk className="sk-line" style={{ width: '85%', marginBottom: '6px' }} />
+            <Sk className="sk-line" style={{ width: '75%', marginBottom: '28px' }} />
+            <div style={{ display: 'flex', gap: '12px', marginBottom: '28px' }}>
+              <Sk className="sk-pill skeleton-box" style={{ width: '130px' }} />
+              <Sk className="sk-pill skeleton-box" style={{ width: '130px' }} />
+            </div>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              {[1,2,3].map(i => <Sk key={i} className="sk-circle skeleton-box" style={{ width: '40px', height: '40px' }} />)}
+            </div>
+          </div>
+          <div className="hero__photo-wrapper">
+            <Sk className="sk-circle skeleton-box" style={{ width: '260px', height: '260px' }} />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
   if (!hero) return null;
+
 
   // Get initials for placeholder when no photo
   const initials = hero.name

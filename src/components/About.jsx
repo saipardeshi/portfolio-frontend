@@ -9,14 +9,47 @@ import {
   BsLinkedin,
   BsGithub,
   BsFileEarmarkPdfFill,
-  BsBriefcaseFill,
-  BsKanbanFill,
-  BsCpuFill,
-  BsPatchCheckFill
 } from 'react-icons/bs';
+import Sk from '../components/Sk';
 
-const About = ({ about, hero }) => {
+const About = ({ about, hero, loading }) => {
+  /* ---------- SKELETON ---------- */
+  if (loading) return (
+    <section id="about" className="section">
+      <div className="container">
+        <div className="section-divider"></div>
+        <Sk className="sk-line--xl skeleton-box" style={{ width: '200px', marginBottom: '10px' }} />
+        <Sk className="sk-line sk-line--sm" style={{ width: '260px', marginBottom: '40px' }} />
+        <div className="about__grid">
+          <div>
+            {[100, 90, 95, 80, 70].map((w, i) => (
+              <Sk key={i} className="sk-line" style={{ width: `${w}%`, marginBottom: '10px' }} />
+            ))}
+            <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {[1,2,3,4].map(i => (
+                <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                  <Sk className="sk-circle skeleton-box" style={{ width: '20px', height: '20px', flexShrink: 0 }} />
+                  <Sk className="sk-line" style={{ width: '60%', marginBottom: 0 }} />
+                </div>
+              ))}
+            </div>
+            <Sk className="sk-pill skeleton-box" style={{ width: '160px', marginTop: '28px' }} />
+          </div>
+          <div className="about__stats">
+            {[1,2,3,4].map(i => (
+              <div key={i} className="about__stat-card">
+                <Sk className="skeleton-box" style={{ width: '60px', height: '40px', margin: '0 auto 8px', borderRadius: '6px' }} />
+                <Sk className="sk-line sk-line--sm" style={{ width: '80%', margin: '0 auto' }} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
   if (!about) return null;
+
 
   return (
     <section id="about" className="section">

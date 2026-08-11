@@ -4,18 +4,44 @@
 // =============================================
 import React from 'react';
 import {
-  BsGithub,
-  BsBoxArrowUpRight,
-  BsWindow,
-  BsDatabaseFill,
-  BsPhoneFill,
-  BsGearFill,
-  BsTerminalFill,
-  BsCodeSlash
+  BsGithub, BsBoxArrowUpRight, BsWindow, BsDatabaseFill,
+  BsPhoneFill, BsGearFill, BsTerminalFill, BsCodeSlash
 } from 'react-icons/bs';
+import Sk from '../components/Sk';
 
-const Projects = ({ projects }) => {
+const Projects = ({ projects, loading }) => {
+  /* ---------- SKELETON ---------- */
+  if (loading) return (
+    <section id="projects" className="section" style={{ background: 'rgba(124,58,237,0.03)' }}>
+      <div className="container">
+        <div className="section-divider"></div>
+        <Sk className="sk-line--xl skeleton-box" style={{ width: '180px', marginBottom: '10px' }} />
+        <Sk className="sk-line sk-line--sm" style={{ width: '240px', marginBottom: '40px' }} />
+        <div className="projects__grid">
+          {[1,2,3].map(i => (
+            <div key={i} className="project-card">
+              <Sk className="sk-image skeleton-box" style={{ width: '100%', height: '180px', marginBottom: '0' }} />
+              <div className="project-card__body">
+                <Sk className="sk-line sk-line--lg" style={{ width: '70%', marginBottom: '12px' }} />
+                <Sk className="sk-line" style={{ width: '100%', marginBottom: '6px' }} />
+                <Sk className="sk-line" style={{ width: '85%', marginBottom: '16px' }} />
+                <div className="sk-tags" style={{ marginBottom: '16px' }}>
+                  {[60,75,55].map((w,j) => <Sk key={j} className="sk-pill skeleton-box" style={{ width: `${w}px` }} />)}
+                </div>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  <Sk className="sk-pill skeleton-box" style={{ width: '90px' }} />
+                  <Sk className="sk-pill skeleton-box" style={{ width: '90px' }} />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
   if (!projects || projects.length === 0) return null;
+
 
   // Choose a relative Bootstrap Icon based on project tech stack keywords
   const getProjectIcon = (techStack = [], title = '') => {

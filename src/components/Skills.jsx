@@ -1,17 +1,36 @@
 import React from 'react';
 import {
-  BsWindow,
-  BsServer,
-  BsGearFill,
-  BsDatabaseFill,
-  BsPhone,
-  BsCloudFill,
-  BsBugFill,
-  BsGridFill
+  BsWindow, BsServer, BsGearFill, BsDatabaseFill,
+  BsPhone, BsCloudFill, BsBugFill, BsGridFill
 } from 'react-icons/bs';
+import Sk from '../components/Sk';
 
-const Skills = ({ skills }) => {
+const Skills = ({ skills, loading }) => {
+  /* ---------- SKELETON ---------- */
+  if (loading) return (
+    <section id="skills" className="section" style={{ background: 'rgba(124,58,237,0.03)' }}>
+      <div className="container">
+        <div className="section-divider"></div>
+        <Sk className="sk-line--xl skeleton-box" style={{ width: '220px', marginBottom: '10px' }} />
+        <Sk className="sk-line sk-line--sm" style={{ width: '280px', marginBottom: '40px' }} />
+        <div className="skills__grid">
+          {[1,2,3,4].map(i => (
+            <div key={i} className="card">
+              <Sk className="sk-line sk-line--lg" style={{ width: '60%', marginBottom: '16px' }} />
+              <div className="sk-tags">
+                {[80,65,90,70,55,75].map((w, j) => (
+                  <Sk key={j} className="sk-pill skeleton-box" style={{ width: `${w}px` }} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
   if (!skills || skills.length === 0) return null;
+
 
   const categoryIcons = {
     'Frontend': <BsWindow />,

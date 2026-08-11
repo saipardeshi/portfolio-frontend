@@ -3,9 +3,32 @@
 // =============================================
 import React from 'react';
 import { BsPatchCheckFill, BsBuilding, BsCalendarEvent, BsBoxArrowUpRight } from 'react-icons/bs';
+import Sk from '../components/Sk';
 
-const Certificates = ({ certificates }) => {
+const Certificates = ({ certificates, loading }) => {
+  /* ---------- SKELETON ---------- */
+  if (loading) return (
+    <section id="certificates" className="section" style={{ background: 'rgba(124,58,237,0.03)' }}>
+      <div className="container">
+        <div className="section-divider"></div>
+        <Sk className="sk-line--xl skeleton-box" style={{ width: '200px', marginBottom: '10px' }} />
+        <Sk className="sk-line sk-line--sm" style={{ width: '270px', marginBottom: '40px' }} />
+        <div className="certs__grid">
+          {[1,2,3].map(i => (
+            <div key={i} className="card" style={{ position: 'relative', overflow: 'hidden' }}>
+              <Sk className="sk-line sk-line--lg" style={{ width: '80%', marginBottom: '12px' }} />
+              <Sk className="sk-line" style={{ width: '55%', marginBottom: '8px' }} />
+              <Sk className="sk-line sk-line--sm" style={{ width: '40%', marginBottom: '16px' }} />
+              <Sk className="sk-pill skeleton-box" style={{ width: '130px' }} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
   if (!certificates || certificates.length === 0) return null;
+
 
   return (
     <section id="certificates" className="section" style={{ background: 'rgba(124, 58, 237, 0.03)' }}>
