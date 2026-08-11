@@ -3,9 +3,35 @@
 // =============================================
 import React from 'react';
 import { BsCalendarEventFill, BsAwardFill } from 'react-icons/bs';
+import Sk from '../components/Sk';
 
-const Education = ({ educations }) => {
+const Education = ({ educations, loading }) => {
+  /* ---------- SKELETON ---------- */
+  if (loading) return (
+    <section id="education" className="section">
+      <div className="container">
+        <div className="section-divider"></div>
+        <Sk className="sk-line--xl skeleton-box" style={{ width: '200px', marginBottom: '10px' }} />
+        <Sk className="sk-line sk-line--sm" style={{ width: '300px', marginBottom: '40px' }} />
+        <div className="education__grid">
+          {[1, 2].map(i => (
+            <div key={i} className="card">
+              <Sk className="sk-line sk-line--sm" style={{ width: '50%', marginBottom: '10px' }} />
+              <Sk className="sk-line sk-line--lg" style={{ width: '75%', marginBottom: '10px' }} />
+              <Sk className="sk-line" style={{ width: '55%', marginBottom: '16px' }} />
+              <div style={{ display: 'flex', gap: '16px' }}>
+                <Sk className="sk-pill skeleton-box" style={{ width: '110px' }} />
+                <Sk className="sk-pill skeleton-box" style={{ width: '90px' }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+
   if (!educations || educations.length === 0) return null;
+
 
   return (
     <section id="education" className="section">

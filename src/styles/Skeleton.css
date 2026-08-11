@@ -1,0 +1,42 @@
+/* =============================================
+   SKELETON LOADING STYLES
+   Shimmer animation for loading placeholders
+   ============================================= */
+
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+
+.skeleton-box {
+  background: linear-gradient(
+    90deg,
+    #1a1a2e 25%,
+    #252540 50%,
+    #1a1a2e 75%
+  );
+  background-size: 600px 100%;
+  animation: shimmer 1.6s infinite linear;
+  border-radius: 6px;
+}
+
+/* ---- reusable shape helpers ---- */
+.sk-line        { height: 14px; margin-bottom: 10px; }
+.sk-line--sm    { height: 10px; }
+.sk-line--lg    { height: 20px; }
+.sk-line--xl    { height: 28px; }
+.sk-line--title { height: 48px; border-radius: 8px; }
+.sk-circle      { border-radius: 50%; }
+.sk-pill        { border-radius: 50px; height: 32px; }
+.sk-card        { border-radius: 12px; padding: 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+.sk-image       { border-radius: 10px; }
+
+/* ---- grid helpers ---- */
+.sk-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.sk-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.sk-tags   { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+@media (max-width: 768px) {
+  .sk-grid-3 { grid-template-columns: 1fr; }
+  .sk-grid-2 { grid-template-columns: 1fr; }
+}

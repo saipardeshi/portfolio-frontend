@@ -1,6 +1,8 @@
 // =============================================
 // PORTFOLIO PAGE
-// Fetches data from backend and renders all sections
+// Fetches data from backend and renders all sections.
+// Shows skeleton screens instantly; replaces with real
+// content once the backend responds.
 // =============================================
 import React, { useEffect, useState } from 'react';
 import { getPortfolio } from '../api/portfolioApi';
@@ -18,13 +20,13 @@ import Contact from '../components/Contact';
 import '../styles/global.css';
 import '../styles/Navbar.css';
 import '../styles/Portfolio.css';
+import '../styles/Skeleton.css';
 
-const Portfolio = ({ onReady }) => {
+const Portfolio = () => {
   const [portfolio, setPortfolio] = useState(null);
-  const [loading, setLoading] = useState(true);   // ⏳ track loading state
-  const [error, setError] = useState(false);       // ❌ track error state
+  const [loading, setLoading]     = useState(true);
+  const [error, setError]         = useState(false);
 
-  // Fetch portfolio data from backend — supports retry on button click
   const fetchData = () => {
     setLoading(true);
     setError(false);
@@ -32,87 +34,13 @@ const Portfolio = ({ onReady }) => {
     getPortfolio()
       .then(res => setPortfolio(res.data))
       .catch(() => {
-        // Backend unavailable after all retries — show error UI
         setError(true);
         setPortfolio({});
       })
-      .finally(() => {
-        setLoading(false);
-        // Signal loader to complete once data is ready (or failed)
-        onReady?.();
-      });
+      .finally(() => setLoading(false));
   };
 
-  // Fetch portfolio data from backend on mount
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  // ⏳ Show spinner while backend is waking up / loading
-  if (loading) {
-    return (
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-        color: '#a855f7',
-        gap: '16px',
-        background: '#0a0a0a'
-      }}>
-        {/* Spinning loader ring */}
-        <div style={{
-          width: '48px',
-          height: '48px',
-          border: '4px solid #a855f7',
-          borderTop: '4px solid transparent',
-          borderRadius: '50%',
-          animation: 'spin 1s linear infinite'
-        }} />
-        <p style={{ fontSize: '1rem', opacity: 0.7 }}>
-          Waking up server, please wait...
-        </p>
-        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-      </div>
-    );
-  }
-
-  // ❌ Show error message + retry button if all retries failed
-  if (error) {
-    return (
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-        color: '#a855f7',
-        gap: '16px',
-        background: '#0a0a0a'
-      }}>
-        <p style={{ fontSize: '1.2rem' }}>⚠️ Failed to load portfolio</p>
-        <p style={{ fontSize: '0.9rem', opacity: 0.6 }}>
-          The server may be starting up. Please try again.
-        </p>
-        {/* Retry button — re-triggers fetchData with fresh retries */}
-        <button
-          onClick={fetchData}
-          style={{
-            padding: '10px 24px',
-            background: '#a855f7',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            fontSize: '1rem'
-          }}
-        >
-          Retry
-        </button>
-      </div>
-    );
-  }
+  useEffect(() => { fetchData(); }, []);
 
   return (
     <div>
@@ -120,28 +48,54 @@ const Portfolio = ({ onReady }) => {
       <div className="bg-glow bg-glow-1"></div>
       <div className="bg-glow bg-glow-2"></div>
 
-      {/* Navbar - passes name for logo */}
+      {/* Navbar — renders immediately (no data needed for layout) */}
       <Navbar name={portfolio?.hero?.name} />
 
-      {/* All portfolio sections */}
       <main>
-        <Hero hero={portfolio?.hero} />
-        <About about={portfolio?.about} hero={portfolio?.hero} />
-        <Skills skills={portfolio?.skills} />
-        <Experience experiences={portfolio?.experiences} />
-        <Projects projects={portfolio?.projects} />
-        <Education educations={portfolio?.educations} />
-        <Certificates certificates={portfolio?.certificates} />
-        <Contact contact={portfolio?.contact} hero={portfolio?.hero} />
+        {/* Each section receives loading flag and renders its own skeleton */}
+        <Hero         hero={portfolio?.hero}               loading={loading} />
+        <About        about={portfolio?.about}             hero={portfolio?.hero} loading={loading} />
+        <Skills       skills={portfolio?.skills}           loading={loading} />
+        <Experience   experiences={portfolio?.experiences} loading={loading} />
+        <Projects     projects={portfolio?.projects}       loading={loading} />
+        <Education    educations={portfolio?.educations}   loading={loading} />
+        <Certificates certificates={portfolio?.certificates} loading={loading} />
+        <Contact      contact={portfolio?.contact}         hero={portfolio?.hero} loading={loading} />
       </main>
 
+      {/* Error toast — shown at bottom if backend failed, user can retry */}
+      {error && (
+        <div style={{
+          position: 'fixed', bottom: '24px', left: '50%',
+          transform: 'translateX(-50%)',
+          background: 'rgba(20,10,40,0.95)', border: '1px solid #7c3aed',
+          borderRadius: '12px', padding: '14px 24px',
+          display: 'flex', alignItems: 'center', gap: '16px',
+          zIndex: 9999, boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+          color: '#fff', fontSize: '0.9rem',
+        }}>
+          <span>⚠️ Server is starting up…</span>
+          <button
+            onClick={fetchData}
+            style={{
+              padding: '6px 16px', background: '#7c3aed', color: '#fff',
+              border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '0.85rem',
+            }}
+          >
+            Retry
+          </button>
+        </div>
+      )}
+
       {/* Footer */}
-      <footer className="footer">
-        <p>
-          Designed & Built by <span>{portfolio?.hero?.name || 'You'}</span> ·{' '}
-          {new Date().getFullYear()}
-        </p>
-      </footer>
+      {!loading && (
+        <footer className="footer">
+          <p>
+            Designed &amp; Built by <span>{portfolio?.hero?.name || 'You'}</span> ·{' '}
+            {new Date().getFullYear()}
+          </p>
+        </footer>
+      )}
     </div>
   );
 };
