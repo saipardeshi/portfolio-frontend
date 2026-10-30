@@ -4,6 +4,7 @@
 // Shows skeleton screens instantly; replaces with real
 // content once the backend responds.
 // =============================================
+import React, { useEffect, useState } from 'react';
 import { getPortfolio, getCachedPortfolio } from '../api/portfolioApi';
 import fallbackPortfolio from '../data/fallbackPortfolio.json';
 
