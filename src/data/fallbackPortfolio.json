@@ -1,0 +1,124 @@
+{
+  "id": "69b850ecfcb1d421c7ba10ed",
+  "hero": {
+    "name": "Sai Pardeshi",
+    "tagline": "Full Stack Developer",
+    "shortIntro": "I build elegant digital experiences.",
+    "profilePhotoUrl": "https://drive.google.com/file/d/1JK_UEgG8U4NHZOhp9IHsKRHc7UOVm76c/view?usp=sharing",
+    "linkedinUrl": "https://www.linkedin.com/in/sai-pardeshi350184251 ",
+    "githubUrl": "https://github.com/saipardeshi",
+    "email": "saipardeshi001@gmail.com"
+  },
+  "about": {
+    "bio": "I am a passionate Full Stack Developer. Computer Engineering fresher with hands-on experience in frontend and backend development. Skilled in Java, Spring Boot, HTML, CSS, and JavaScript. Seeking an entry-level software development role to apply problem-solving and development skills in real-world projects. ",
+    "location": "Pune, Maharashtra, India",
+    "resumeUrl": "https://drive.google.com/file/d/1RL3TyrjOorYT53c-5xtpfNoEGUqzsXQU/view?usp=drive_link",
+    "yearsExperience": "6 months",
+    "projectsCompleted": "5+",
+    "technologiesCount": "10+",
+    "certificationsCount": "1"
+  },
+  "skills": [
+    {
+      "category": "Frontend",
+      "skills": ["React.js", "JavaScript", "HTML5", "CSS3", "Bootstrap", "Tailwind CSS"]
+    },
+    {
+      "category": "Backend",
+      "skills": ["Spring Framework", "Spring Boot", "Hibernate", "JPA", "JDBC", "JSP", "Servlet", "REST APIs"]
+    },
+    {
+      "category": "Languages",
+      "skills": ["Core Java", "Advanced Java"]
+    },
+    {
+      "category": "Databases",
+      "skills": ["MySQL", "MongoDB"]
+    },
+    {
+      "category": "Tools & IDEs",
+      "skills": ["IntelliJ IDEA", "VS Code", "Git", "GitHub", "Maven", "Postman", "Apache Tomcat", "XAMPP"]
+    },
+    {
+      "category": "Testing",
+      "skills": ["Manual Testing", "API Testing (Postman)", "Test Case Design", "Bug Tracking"]
+    },
+    {
+      "category": "Methodologies",
+      "skills": ["Agile", "Scrum", "SDLC"]
+    },
+    {
+      "category": "Design",
+      "skills": ["Canva"]
+    }
+  ],
+  "experiences": [
+    {
+      "company": "Fourise Software Solutions Pvt. Ltd.",
+      "role": "Full Stack Java - Intern",
+      "duration": "Feb 2026 - Present",
+      "description": "Working on scalable applications.",
+      "logoUrl": null,
+      "techStack": ["React", "MongoDB", "css", "javascript", "bootstrap", "tailwind", "html", "Core java", "Adv Java", "Springboot"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Junnar Tourist Guide",
+      "description": "Junnar Tourist Guide is a full-stack web app to explore Junnar — Maharashtra's first Tourist Taluka. Discover multiple destinations including forts, temples, caves & nature spots with an interactive map, image galleries, reviews, itinerary planning and live weather. Built with React, Spring Boot & MongoDB Atlas.",
+      "imageUrl": null,
+      "githubLink": "https://github.com/saipardeshi/Junnar_tourist_guide_frontend.git",
+      "liveLink": "https://junnar-tourist-guide-frontend.vercel.app/",
+      "techStack": ["SpringBoot", "MongoDb Atlas", "Reactjs"],
+      "featured": false
+    },
+    {
+      "title": "Bindass.co — Streetwear E-Commerce Platform",
+      "description": "Full-stack streetwear e-commerce app with JWT & Google login, cart, wishlist, orders, and auto PDF invoices.",
+      "imageUrl": null,
+      "githubLink": "https://github.com/saipardeshi/bindass.co-Frontend",
+      "liveLink": "https://bindass-co-frontend.vercel.app/",
+      "techStack": ["Spring Boot", "React.js", "MongoDB", "Cloudinary", "HTML", "CSS"],
+      "featured": false
+    }
+  ],
+  "educations": [
+    {
+      "institution": "G H Raisoni College Of Engineering and Management Pune",
+      "degree": "B.Tech",
+      "fieldOfStudy": "Computer Engineering",
+      "duration": "2021-2025",
+      "grade": "8.26 "
+    },
+    {
+      "institution": "Shri Shiv Chhatrapati College of Junnar ,Pune",
+      "degree": "HSC",
+      "fieldOfStudy": "Science",
+      "duration": "2020-2021",
+      "grade": "82.33"
+    },
+    {
+      "institution": "Shankarrao Butte Patil Vidyalaya, Junnar",
+      "degree": "SSC",
+      "fieldOfStudy": "",
+      "duration": "2018-2019",
+      "grade": "69.80"
+    }
+  ],
+  "certificates": [
+    {
+      "title": "Full Stack Java Developer",
+      "issuer": "SEED INFOTECH PUNE",
+      "date": "2025",
+      "credentialUrl": "https://drive.google.com/file/d/110XR1GCNfgcEbeb6Th3ZVuye32a5xm0D/view?usp=drive_link",
+      "imageUrl": null
+    }
+  ],
+  "contact": {
+    "email": "saipardeshi001@gmail.com",
+    "phone": "+91 9975696968",
+    "linkedinUrl": "https://www.linkedin.com/in/sai-pardeshi350184251 ",
+    "githubUrl": "https://github.com/saipardeshi",
+    "location": "Pune, Maharashtra, India"
+  }
+}

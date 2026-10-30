@@ -8,6 +8,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
   getPortfolio,
+  setCachedPortfolio,
   updateHero, updateAbout, updateSkills,
   updateExperiences, updateProjects, updateEducations,
   updateCertificates, updateContact
@@ -666,6 +667,7 @@ const AdminDashboard = () => {
     try {
       const res = await updateFn(data);
       setPortfolio(res.data); // Update local state with response
+      setCachedPortfolio(res.data); // Keep browser cache updated immediately
       showToast(`${sectionKey} updated successfully!`);
     } catch (err) {
       showToast('Failed to save. Try again.', 'error');

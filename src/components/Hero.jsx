@@ -11,7 +11,6 @@ const Hero = ({ hero, loading }) => {
   /* ---------- SKELETON ---------- */
   if (loading) return (
     <section id="home" className="hero section">
-      <AnimatedBackground />
       <div className="container">
         <div className="hero__grid">
           <div className="hero__text">

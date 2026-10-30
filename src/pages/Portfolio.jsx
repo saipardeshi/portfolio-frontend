@@ -4,8 +4,8 @@
 // Shows skeleton screens instantly; replaces with real
 // content once the backend responds.
 // =============================================
-import React, { useEffect, useState } from 'react';
-import { getPortfolio } from '../api/portfolioApi';
+import { getPortfolio, getCachedPortfolio } from '../api/portfolioApi';
+import fallbackPortfolio from '../data/fallbackPortfolio.json';
 
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -23,19 +23,31 @@ import '../styles/Portfolio.css';
 import '../styles/Skeleton.css';
 
 const Portfolio = () => {
-  const [portfolio, setPortfolio] = useState(null);
-  const [loading, setLoading]     = useState(true);
+  // Instant load: retrieve cached portfolio from browser or bundled snapshot (0ms)
+  const initialData = getCachedPortfolio() || fallbackPortfolio;
+  const [portfolio, setPortfolio] = useState(initialData);
+  // Only show skeletons if no initial or cached data is available
+  const [loading, setLoading]     = useState(!initialData);
   const [error, setError]         = useState(false);
 
-  const fetchData = () => {
-    setLoading(true);
+  const fetchData = (isManualRetry = false) => {
+    // Only show skeleton spinners if there's completely no data or explicitly requested
+    if (!portfolio || isManualRetry) {
+      setLoading(true);
+    }
     setError(false);
 
     getPortfolio()
-      .then(res => setPortfolio(res.data))
+      .then(res => {
+        if (res?.data) {
+          setPortfolio(res.data);
+        }
+      })
       .catch(() => {
-        setError(true);
-        setPortfolio({});
+        // Only show error toast if there's no data to display at all
+        if (!portfolio) {
+          setError(true);
+        }
       })
       .finally(() => setLoading(false));
   };
@@ -76,7 +88,7 @@ const Portfolio = () => {
         }}>
           <span>⚠️ Server is starting up…</span>
           <button
-            onClick={fetchData}
+            onClick={() => fetchData(true)}
             style={{
               padding: '6px 16px', background: '#7c3aed', color: '#fff',
               border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '0.85rem',
