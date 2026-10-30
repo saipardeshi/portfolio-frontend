@@ -35,11 +35,40 @@ export const loginAdmin = (credentials) =>
 export const verifyToken = () =>
   axiosInstance.get('/auth/verify');                 // → /api/auth/verify ✅
 
-// ✅ Public API with retry logic for Render cold start (free tier sleeps after inactivity)
+// Key used for browser caching
+export const CACHE_KEY = 'portfolio_data_cache';
+
+// Helper to get cached portfolio data immediately (0ms)
+export const getCachedPortfolio = () => {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+};
+
+// Helper to save portfolio data to cache
+export const setCachedPortfolio = (data) => {
+  try {
+    if (data) {
+      localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+    }
+  } catch (err) {
+    console.warn('Failed to cache portfolio data:', err);
+  }
+};
+
+// ✅ Public API with retry logic and 10s timeout (persists to cache on success)
 export const getPortfolio = async (retries = 3, delay = 2000) => {
   for (let i = 0; i < retries; i++) {
     try {
-      const response = await axios.get(`${API_BASE}/api/portfolio`); // → /api/portfolio ✅
+      const response = await axios.get(`${API_BASE}/api/portfolio`, {
+        timeout: 10000 // 10 second timeout per attempt to prevent indefinite hanging
+      });
+      if (response?.data) {
+        setCachedPortfolio(response.data);
+      }
       return response;
     } catch (err) {
       const isLast = i === retries - 1;
